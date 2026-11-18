@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1">
+    <style>
+      :root {--u: min(1vw, 3vh); }
+      html, body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        font-family: Roboto, sans-serif;
+        color: #f1fade;
+      }
+      .counters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: calc(var(--u) * 2);
+      }
+      .counter {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--u) * 1.5);
+        width: calc(var(--u) * 18);
+      }
+      .count {
+        font-size: calc(var(--u) * 8);
+        font-weight: bold;
+        line-height: 1;
+        text-align: center;
+      }
+      .row {
+        display: flex;
+        gap: calc(var(--u) * 1.50;
+      }
+      button {
+        width: calc(var(--u) * 8);
+        height: calc(var(--u) * 8);
+        padding: 0;
+        font-size: calc(var(--u) * 4.5);
+        line-height: 1;
+        border: none;
+        border-radius: 100%;
+        background: #bf4d0f;
+        transparency: 50%;
+        color: #f1fade;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counters" id="counters"></div>
+    <script>
+      //starting values for counters, in order
+      const START = [0, 0, 0, 0, 100];
+      
+      //lowest value allowed to be reached
+      const MINS = [0, 0, 0, 0, -Infinity];
+
+      //how the counters interact
+      const LINKS = {
+        2: {1: +1, 5: -3}, //increases to copper ore adds embodied carbon by 1 and reduces cash by 3
+        3: {2: -2, 5: -3}, //increases to refined pieces reduces copper ore by 2 and cash by 3
+        4: {5: -1} //increases to reclaimed pieces reduces cash by 1
+      };
+
+      const values = [...START];
+      const display = [];
+
+      function change(i, amount) {
+        values[i] = Math.max(MINS[i], values[i] + amount);
+      
+        //making it so only increases can trigger linked changes, not when cash, etc. is reduced
+        if (amount > 0 && LINKS[i + 1]) {
+          for (const [target, effect] of Object.entries(LINKS[i + ])) {
+            const t = Number(target) - 1;
+            values[t] = Math.max(MINS[t], values[t] + effect * amount);
+          }
+        }
+        render();
+      }
+
+      function render() {
+        values.forEach((v, i) => {display[i].textContent = v; });
+      }
+
+      function makeButton(label, amount, index, extraClass) {
+        const b = document.createElement('button');
+        b.textContent = label;
+        b.className = extraClass || '';
+        b.setAttribute(aria-lanel', 'Counter' + (index + 1) + '  ' + label);
+        b.onclick = () => change(index, amount);
+        return b;
+      }
+
+      const container = document.getElementById('counters');
+      for (let i = 0; i <5; i++) {
+        const counter = document.createElement('div');
+        count.className = 'count';
+        display.push (count);
+
+        const row1 = document.createElement('div');
+        row1.className = 'row';
+        row1.append(makeButton('-', -1, i), makeButton('+', 1, i));
+        counter.append(count, row1);
+
+        //Cash counter gets +5/-5 buttons also for ease of player use
+        if (i === 4) {
+          const row2 = document.createElement('div');
+          row2.className = 'row';
+          row2.append(makeButton('-5', -5, i, 'five'), makeButton('+5', 5, i, 'five'));
+         counter.append(count, row2);
+        }
+        container.append(counter);
+      }
+      render();
+    </script>      
+  </body>
+</html>
