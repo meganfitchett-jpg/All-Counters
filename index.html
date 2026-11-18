@@ -79,7 +79,7 @@
       
         //making it so only increases can trigger linked changes, not when cash, etc. is reduced
         if (amount > 0 && LINKS[i + 1]) {
-          for (const [target, effect] of Object.entries(LINKS[i + ])) {
+          for (const [target, effect] of Object.entries(LINKS[i + 1])) {
             const t = Number(target) - 1;
             values[t] = Math.max(MINS[t], values[t] + effect * amount);
           }
@@ -95,7 +95,7 @@
         const b = document.createElement('button');
         b.textContent = label;
         b.className = extraClass || '';
-        b.setAttribute(aria-lanel', 'Counter' + (index + 1) + '  ' + label);
+        b.setAttribute('aria-label', 'Counter' + (index + 1) + '  ' + label);
         b.onclick = () => change(index, amount);
         return b;
       }
