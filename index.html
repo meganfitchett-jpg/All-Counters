@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, intial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       :root {--u: min(1vw, 3vh); }
       html, body {
@@ -38,7 +38,7 @@
       }
       .row {
         display: flex;
-        gap: calc(var(--u) * 1.50;
+        gap: calc(var(--u) * 1.50);
       }
       button {
         width: calc(var(--u) * 8);
@@ -49,7 +49,6 @@
         border: none;
         border-radius: 100%;
         background: #bf4d0f;
-        transparency: 50%;
         color: #f1fade;
         cursor: pointer;
       }
@@ -103,9 +102,13 @@
       const container = document.getElementById('counters');
       for (let i = 0; i <5; i++) {
         const counter = document.createElement('div');
-        count.className = 'count';
+        counter.className = 'count';
         display.push (count);
 
+        const count = document.createElement('div');
+        count.className = 'count';
+        display.push (count);
+        
         const row1 = document.createElement('div');
         row1.className = 'row';
         row1.append(makeButton('-', -1, i), makeButton('+', 1, i));
@@ -116,7 +119,7 @@
           const row2 = document.createElement('div');
           row2.className = 'row';
           row2.append(makeButton('-5', -5, i, 'five'), makeButton('+5', 5, i, 'five'));
-         counter.append(count, row2);
+         counter.append(row2);
         }
         container.append(counter);
       }
