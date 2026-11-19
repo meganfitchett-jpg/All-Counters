@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       :root {
-        --c: 29;
-        --g: 20;
-        --u: min(calc(100vw / (5 * var(--c) + 7 * var(--g))), 3vh); }
+        --u: min(0.5vw, 7vh) }
       html, body {
         margin: 0;
         height: 100%;
@@ -25,15 +23,15 @@
         display: flex;
         flex-direction: row;
         align-items: flex-end;
-        gap: calc(var(--u) * var(--g) * 1.5);
-        padding-left: calc(var(--u) * var(--g));
+        width: 100%;
       }
       .counter {
         display: flex;
         flex-direction: row;
         align-items: flex-end;
+        justify-content: center;
+        flex: 1 1 0;
         gap: calc(var(--u) * 1.5);
-        width: calc(var(--u) * var(--c));
       }
       .controls {
         display: flex;
