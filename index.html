@@ -7,7 +7,7 @@
       :root {
         --c: 29;
         --g: 12;
-        --u: min(calc(100vw / (5 * var(--c) + 4 * var(--g))), 3vh); }
+        --u: min(calc(100vw / (5 * var(--c) + 5 * var(--g))), 3vh); }
       html, body {
         margin: 0;
         height: 100%;
@@ -26,6 +26,7 @@
         flex-direction: row;
         align-items: flex-end;
         gap: calc(var(--u) * var(--g));
+        padding-left: calc(var(--u) * var(--g));
       }
       .counter {
         display: flex;
