@@ -123,12 +123,12 @@
         //this creates a box that will show the actual count
         
         const controls = document.createElement('div');
-        controlls.className = 'controls';
+        controls.className = 'controls';
         
         const row1 = document.createElement('div');
         row1.className = 'row';
         row1.append(makeButton('-', -1, i), makeButton('+', 1, i));
-        controls.append(count, row1);
+        controls.append(row1);
         counter.append(count, controls);
         //this creates the box for the first rwo of buttons
 
