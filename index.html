@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       :root {
-        --c: 18;
-        --g: 20;
-        --u: min(calc(100vw / (5 * var(--c) + 4 * var(--g) + 16)), 3vh); }
+        --c: 29;
+        --g: 4;
+        --u: min(calc(100vw / (5 * var(--c) + 4 * var(--g))), 3vh); }
       html, body {
         margin: 0;
         height: 100%;
@@ -29,15 +29,21 @@
       }
       .counter {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         gap: calc(var(--u) * 1.5);
         width: calc(var(--u) * var(--c));
       }
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--u) * 1.5);
+      }
       .count {
+        min-width: calc(var(--u) * 14);
         font-size: calc(var(--u) * 8);
         font-weight: bold;
-        line-height: 1;
+        line-height: calc(var(--u) * 6);;
         text-align: center;
       }
       .row {
@@ -116,10 +122,14 @@
         display.push (count);
         //this creates a box that will show the actual count
         
+        const controls = document.createElement('div');
+        controlls.className = 'controls';
+        
         const row1 = document.createElement('div');
         row1.className = 'row';
         row1.append(makeButton('-', -1, i), makeButton('+', 1, i));
-        counter.append(count, row1);
+        controls.append(count, row1);
+        counter.append(count, controls);
         //this creates the box for the first rwo of buttons
 
         //Cash counter gets +5/-5 buttons also for ease of player use
@@ -127,7 +137,7 @@
           const row2 = document.createElement('div');
           row2.className = 'row';
           row2.append(makeButton('-5', -5, i, 'five'), makeButton('+5', 5, i, 'five'));
-         counter.append(row2);
+          controls.append(row2);
         }
         container.append(counter);
       }
