@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       :root {
-        --c: 44; 
+        --c: 52; 
         --s: 48;
-        --o: -4;
+        --o: 0;
         --u: min(calc(100vw / (5 * var(--c))), 7vh);
       }
       html, body {
@@ -28,7 +28,7 @@
         flex-direction: row;
         align-items: flex-end;
         justify-content: flex-start;
-        padding-right: calc(var(--u) * var(--o));
+        margin-left: calc(var(--u) * var(--o));
       }
       .counter {
         display: flex;
@@ -37,11 +37,11 @@
         justify-content: flex-end;
         flex: 0 0 calc(var(--u) * var(--s));
         gap: calc(var(--u) * 1.5);
-        padding-left: calc(var(--u) * 2);
+        padding-right: calc(var(--u) * 2);
         box-sizing: border-box;
       }
       .counter:nth-child(5) {
-        padding-left: calc(var(--u) * 3);
+        padding-left: calc(var(--u) * 6);
       }
       .controls {
         display: flex;
