@@ -6,7 +6,7 @@
     <style>
       :root {
         --c: 29;
-        --g: 20;
+        --g: 18;
         --u: min(calc(100vw / (5 * var(--c) + 4 * var(--g))), 3vh); }
       html, body {
         margin: 0;
@@ -137,7 +137,7 @@
           const row2 = document.createElement('div');
           row2.className = 'row';
           row2.append(makeButton('-5', -5, i, 'five'), makeButton('+5', 5, i, 'five'));
-          controls.append(row2);
+          controls.prepend(row2);
         }
         container.append(counter);
       }
