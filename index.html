@@ -80,6 +80,13 @@
   <body>
     <div class="counters" id="counters"></div>
     <script>
+    function setUnit() {
+  const root = document.documentElement;
+  const c = parseFloat(getComputedStyle(root).getPropertyValue('--c'));
+  root.style.setProperty('--u', (root.clientWidth / (5 * c)) + 'px');
+}
+setUnit();
+window.addEventListener('resize', setUnit);      
       //starting values for counters, in order
       const START = [0, 0, 0, 0, 100];
       
